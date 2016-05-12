@@ -1,0 +1,33 @@
+zh-CN:
+  submit: "提交"
+  save: "保存"
+  cancel: "取消"
+
+  activerecord:
+      errors:
+        models:
+          post:
+            attributes:
+              content:
+                blank: "正文内容不能为空"
+          user:
+            attributes:
+              password:
+                blank: "密码不能为空"
+              username:
+                blank: "用户名不能为空"
+                too_short: "至少3个字符"
+                invalid: "用户名只能使用字母、数字或 _ 号"
+              email:
+                blank: "邮箱不能为空"
+                invalid: "邮箱格式不正确"
+              password_confirmation:
+                confirmation: "两次输入的密码不一致"
+        prohibited_being_saved: "有以下问题导致无法提交:"
+
+  users:
+    username: "用户名"
+    email: "电子邮箱"
+    bio: "自我介绍"
+    password: "密码"
+    password_confirmation: "确认密码"
