@@ -9,6 +9,10 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.datetime :reset_password_sent_at
       t.datetime :locked_at
 
+      t.integer :collections_count, default: 0
+      t.integer :post_count, default: 0
+
+
 
       t.timestamps
     end

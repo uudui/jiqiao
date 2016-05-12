@@ -13,6 +13,7 @@
     <div class="main">
       <div class="navbar">
         <span>
+        <%= link_to "Collections", collections_path %> |
         <% if current_user %>
             <%= current_user.username %> |
             <%= link_to 'Logout', logout_path %>

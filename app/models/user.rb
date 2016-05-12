@@ -17,6 +17,9 @@ class User < ApplicationRecord
             :uniqueness => {:case_sensitive => false},
             :format => {:with => email_regex}
 
+
+  has_many :collections
+
   before_save :generate_remember_token
 
   scope :unlocked, -> { where(locked_at: nil) }
