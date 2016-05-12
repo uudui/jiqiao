@@ -10,6 +10,24 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="main">
+      <div class="navbar">
+        <span>
+        <% if current_user %>
+            <%= current_user.username %> |
+            <%= link_to 'Logout', logout_path %>
+        <% else %>
+            <%= link_to 'Login', login_path %> |
+            <%= link_to 'Sign Up', signup_path %>
+        <% end %>
+        </span>
+      </div>
+
+      <div class="container">
+        <%= yield %>
+      </div>
+
+    </div>
+
   </body>
 </html>

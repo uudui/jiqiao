@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_sign_out, :only => [:new, :create]
+  before_filter :require_sign_in, :only => [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -28,6 +30,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        sign_in @user
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -69,6 +72,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :bio, :password, :password_confirmation)
     end
 end

@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :remember_token
       t.string :reset_password_token
       t.datetime :reset_password_sent_at
-      t.locked_at :locked_at
+      t.datetime :locked_at
 
 
       t.timestamps
@@ -15,5 +15,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
 
     add_index :users, :email, unique: true
     add_index :users, :username, unique: true
+
   end
 end

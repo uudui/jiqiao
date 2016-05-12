@@ -3,20 +3,25 @@ class User < ApplicationRecord
 
 
   email_regex = /\A([^@\s]+)@((?:[a-z0-9-]+\.)+[a-z]{2,})\z/i
-  username_regex = /\A[A-Za-z0-9_]+\z/
+  username_regex = /\A[a-z0-9][a-z0-9-]*\z/i
 
   validates :username,
             :presence => true,
-            :length => { :within => 3..50 },
+            :length => {:within => 3..50},
             #:exclusion => USERNAME_BLACKLIST,
-            :format => { :with => username_regex }
+            :uniqueness => {:case_sensitive => false},
+            :format => {:with => username_regex}
 
   validates :email,
             :presence => true,
-            :uniqueness => { :case_sensitive => false },
-            :format => { :with => email_regex }
+            :uniqueness => {:case_sensitive => false},
+            :format => {:with => email_regex}
 
   before_save :generate_remember_token
+
+  scope :unlocked, -> { where(locked_at: nil) }
+  scope :locked, -> { where.not(locked_at: nil) }
+
 
   #用email和密码验证身份
   def self.authenticate(email, password)
@@ -51,7 +56,6 @@ class User < ApplicationRecord
   def admin?
     CONFIG['admin_emails'] && CONFIG['admin_emails'].include?(self.email)
   end
-
 
 
   private

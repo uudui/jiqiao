@@ -18,9 +18,11 @@ zh-CN:
                 blank: "用户名不能为空"
                 too_short: "至少3个字符"
                 invalid: "用户名只能使用字母、数字或 _ 号"
+                taken: "用户名被占用"
               email:
                 blank: "邮箱不能为空"
                 invalid: "邮箱格式不正确"
+                taken: "邮箱被占用"
               password_confirmation:
                 confirmation: "两次输入的密码不一致"
         prohibited_being_saved: "有以下问题导致无法提交:"
