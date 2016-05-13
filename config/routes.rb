@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   root 'users#index'
 
   get "logout" => "sessions#destroy", :as => "logout"

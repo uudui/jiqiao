@@ -11,17 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512053028) do
+ActiveRecord::Schema.define(version: 20160512064906) do
 
   create_table "collections", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.integer  "status",     default: 0
-    t.integer  "post_count", default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "status",      default: 0
+    t.integer  "posts_count", default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "collection_id"
+    t.integer  "user_id"
+    t.integer  "likes_count",   default: 0
+    t.integer  "views_count",   default: 0
+    t.integer  "status",        default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["collection_id"], name: "index_posts_on_collection_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,7 +47,7 @@ ActiveRecord::Schema.define(version: 20160512053028) do
     t.datetime "reset_password_sent_at"
     t.datetime "locked_at"
     t.integer  "collections_count",      default: 0
-    t.integer  "post_count",             default: 0
+    t.integer  "posts_count",            default: 0
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.index ["email"], name: "index_users_on_email", unique: true

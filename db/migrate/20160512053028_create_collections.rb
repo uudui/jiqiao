@@ -5,7 +5,7 @@ class CreateCollections < ActiveRecord::Migration[5.0]
       t.text :content
       t.integer :user_id
       t.integer :status, default: 0
-      t.integer :post_count, default: 0
+      t.integer :posts_count, default: 0
 
       t.timestamps
     end
